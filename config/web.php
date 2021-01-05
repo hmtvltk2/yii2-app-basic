@@ -10,21 +10,41 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@modules' => '@app/modules'
+    ],
+    'timeZone' => 'Asia/Ho_Chi_Minh',
+    'modules' => [
+        'contrib' => 'app\modules\contrib\Module',
+        'main' => 'app\modules\main\Module',
+        // 'gridview' => [
+        //     'class' => '\kartik\grid\Module'
+        //     // enter optional module parameters below - only if you need to
+        //     // use your own export download action or custom translation
+        //     // message source
+        //     // 'downloadAction' => 'gridview/export/download',
+        //     // 'i18n' => []
+        // ]
     ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '',
+            'cookieValidationKey' => 'q',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'formatter' => [
+            'dateFormat' => 'dd/MM/yyyy',
+            'datetimeFormat' => 'php:d/m/Y, H:i:s',
+            'timeZone' => 'UTC'
+        ],
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            // 'loginUrl' => ['app/users/auth/login'],
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'modules/main/site/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -43,15 +63,21 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            // 'defaultRoles' => ['systemManager'],
+            // uncomment if you want to cache RBAC items hierarchy
+            // 'cache' => 'cache',
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => [],
         ],
-        */
+
     ],
+    'language' => 'vi',
+    'defaultRoute' => 'main/site/index',
     'params' => $params,
 ];
 
@@ -70,6 +96,7 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
+    // $config['components']['assetManager']['forceCopy'] = true;
 }
 
 return $config;
