@@ -22,12 +22,15 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <?php if (isset($this->blocks['script'])) : ?>
+        <?= $this->blocks['script'] ?>
+    <?php endif; ?>
 </head>
 
 <body>
     <?php $this->beginBody() ?>
 
-    <div class="wrap">
+    <div class="wrap" id="app">
         <?php
         NavBar::begin([
             'brandLabel' => Yii::$app->name,

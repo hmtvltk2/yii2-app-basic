@@ -74,7 +74,9 @@ $config = [
             'showScriptName' => false,
             'rules' => [],
         ],
-
+        'assetManager' => [
+            'appendTimestamp' => true
+        ]
     ],
     'language' => 'vi',
     'defaultRoute' => 'main/site/index',
