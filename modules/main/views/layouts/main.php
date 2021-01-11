@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\modules\contrib\utils\MinifyCSS;
 use app\modules\main\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -22,8 +23,11 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <?php if (isset($this->blocks['css'])) : ?>
+        <?= MinifyCSS::process($this->blocks['css']) ?>
+    <?php endif; ?>
     <?php if (isset($this->blocks['script'])) : ?>
-        <?= $this->blocks['script'] ?>
+        <?= \JShrink\Minifier::minify($this->blocks['script']) ?>
     <?php endif; ?>
 </head>
 
