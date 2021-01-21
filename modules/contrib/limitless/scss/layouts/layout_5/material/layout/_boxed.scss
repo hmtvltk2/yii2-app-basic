@@ -1,0 +1,19 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Boxed layout
+ *
+ *  Styles for main structure of content area in boxed layout
+ *
+ * ---------------------------------------------------------------------------- */
+
+// Check if component is enabled
+@if $enable-boxed {
+
+    // Container inside other containers
+    .navbar > .container,
+    .page-header > .container,
+    .breadcrumb-line > .container {
+        padding-left: ($content-container-padding-x * 2);
+        padding-right: ($content-container-padding-x * 2);
+    }
+}
